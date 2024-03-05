@@ -2,6 +2,13 @@ function sat_preprocess_subjectData( subjectID, options )
 %SAT_PREPROCESS_SUBJECTDATA Function to run the preprocessing of EEG files
 %in the SAT study
 
+%% Initialize fieldtrip
+% restoredefaultpath;
+% addpath('/Users/jessicatennett/Downloads/fieldtrip-20240214');
+% ft_defaults;
+
+%%
+
 if nargin < 2
     options = sat_set_analysis_options;
 end
@@ -34,13 +41,13 @@ dataEeg        = ft_preprocessing(cfg, dataRereferenced);
 
 % now read the eog and keep it separate from eeg
 cfg = [];
-cfg.dataset    = 'Subject02.dat';
+cfg.dataset = subjectDetails.rawEEGfile; %cfg.dataset    = 'Subject02.dat';
 cfg.channel    = {'VEOG', 'HEOG'};
 dataEog      = ft_preprocessing(cfg);
 
 % same for trigger channel
 cfg = [];
-cfg.dataset    = 'Subject02.dat';
+cfg.dataset = subjectDetails.rawEEGfile; %cfg.dataset    = 'Subject02.dat';
 cfg.channel    = {'Trigger'};
 dataTrigger    = ft_preprocessing(cfg);
 
@@ -116,6 +123,13 @@ dataSegmentedCleaned = ft_rejectartifact(cfg, dataSegmented);
 cfg        = [];
 cfg.method = 'runica'; % this is the default and uses the implementation from EEGLAB
 comp = ft_componentanalysis(cfg, dataSegmentedCleaned);
+
+%plot
+cfg           = [];
+cfg.layout    = 'eeg1010.lay';
+cfg.component = 1:20;
+cfg.marker    = 'off';
+ft_topoplotIC(cfg, comp)
 
 % apply ICA to continous data
 

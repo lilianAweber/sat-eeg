@@ -9,11 +9,19 @@ end
 details.subjectName = ['sub' sprintf('%02.0f', subjectID)];
 
 details.rawSubjectFolder = fullfile(options.rawDataDir, details.subjectName);
-details.rawEEGfile = fullfile(details.subjectFolder, ...
+details.rawEEGfile = fullfile(details.rawSubjectFolder, ...
     ['Subject' sprintf('%02.0f', subjectID) '.dat']);
 
 details.prepSubjectFolder = fullfile(options.workingDir, details.subjectName);
-details.prepEEGfile = fullfile(details.subjectFolder, ...
+details.prepEEGfile = fullfile(details.prepSubjectFolder, ...
     [details.subjectName '_preproc.mat']);
 
 
+%workingDir
+%/Users/jessicatennett/Documents/MATLAB/RandomDots/EEG_Analyses/data/analysis
+
+%rawDataDir
+%/Users/jessicatennett/Documents/MATLAB/RandomDots/EEG_Analyses/data/raw
+
+%codeDir
+%/Users/jessicatennett/Documents/MATLAB/RandomDots/EEG_Analyses/code

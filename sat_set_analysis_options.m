@@ -5,8 +5,8 @@ function options = sat_set_analysis_options
 options = struct;
 
 %%% Enter your directories here 
-options.mainDir = '/Users/lilian/Projects/SAT/';
-options.fieldtripDir = 'Users/lilian/Documents/MATLAB/spm12/external/fieldtrip';
+options.mainDir = '/Users/jessicatennett/Documents/MATLAB/RandomDots/EEG_Analyses';
+options.fieldtripDir = '/Users/jessicatennett/Downloads/fieldtrip-20240214';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 options.rawDataDir = fullfile(options.mainDir, 'data', 'raw');
